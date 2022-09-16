@@ -19,9 +19,10 @@
             <th>Email</th>
             <th>Address</th>
             <th>Admin</th>
+            <th>Avatar</th>
           </tr>
         </thead>
-        <tbody id="databasebody">
+        <tbody>
           <tr>
             <td>Webmaster</td>
             <td>example@email.com</td>
@@ -55,6 +56,13 @@
         <input type="text" name="input-address" id="input-address" /><br />
         <label for="admin">I am Admin</label>
         <input type="checkbox" name="input-admin" id="input-admin" /><br />
+        <label for="avatar">Choose a profile picture:</label>
+        <input
+          type="file"
+          id="input-image"
+          name="input-image"
+          accept="image/png, image/jpeg"
+        /><br />
       </form>
 
       <button id="submit-data">Submit</button>
