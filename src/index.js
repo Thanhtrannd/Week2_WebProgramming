@@ -14,6 +14,8 @@ function initializeCode() {
   const SubmitButton = document.getElementById("submit-data");
   const EmptyButton = document.getElementById("empty-table");
   const DatabaseTable = document.getElementById("database");
+  
+  const DatabaseContent = document.getElementById("databasebody");
 
   SubmitButton.addEventListener("click", function () {
     const UsernameField = document.getElementById("input-username");
@@ -39,7 +41,7 @@ function initializeCode() {
 
   EmptyButton.addEventListener("click", function () {
     var EmptyTable = document.createElement("tbody");
-    DatabaseTable.parentNode.replaceChild(EmptyTable, DatabaseTable);
+    DatabaseContent.parentNode.replaceChild(EmptyTable, DatabaseContent);
   });
 }
 
