@@ -8,40 +8,53 @@ if (document.readyState !== "loading") {
   });
 }
 
-let noteCounter = 0;
-
 function initializeCode() {
   const SubmitButton = document.getElementById("submit-data");
   const EmptyButton = document.getElementById("empty-table");
   const DatabaseTable = document.getElementById("database");
-  
-  const DatabaseContent = document.getElementById("databasebody");
+  const UsernameField = document.getElementById("input-username");
+  const EmailField = document.getElementById("input-email");
+  const AddressField = document.getElementById("input-address");
+  const AdminField = document.getElementById("input-admin");
+  const ImageField = document.getElementById("input-image");
 
   SubmitButton.addEventListener("click", function () {
-    const UsernameField = document.getElementById("input-username");
-    const EmailField = document.getElementById("input-email");
-    const AddressField = document.getElementById("input-address");
-    const AdminField = document.getElementById("input-admin");
-
-    var row = DatabaseTable.insertRow(-1);
-
-    var cell1 = row.insertCell(0);
-    var cell2 = row.insertCell(1);
-    var cell3 = row.insertCell(2);
-    var cell4 = row.insertCell(3);
+    let UserRow = "none";
+    UserRow = UserChecked(DatabaseTable, UsernameField.value);
 
     let admin;
     admin = isAdmin(AdminField);
 
-    cell1.innerText = UsernameField.value;
-    cell2.innerText = EmailField.value;
-    cell3.innerText = AddressField.value;
-    cell4.innerText = admin;
+    if (UserRow === "none") {
+      var row = DatabaseTable.insertRow(-1);
+
+      var cell1 = row.insertCell(0);
+      var cell2 = row.insertCell(1);
+      var cell3 = row.insertCell(2);
+      var cell4 = row.insertCell(3);
+      var cell5 = row.insertCell(4);
+
+      var img = document.createElement("img");
+      img.src = ImageField.value;
+      img.width = 64;
+      img.height = 64;
+
+      cell1.innerText = UsernameField.value;
+      cell2.innerText = EmailField.value;
+      cell3.innerText = AddressField.value;
+      cell4.innerText = admin;
+      cell5.appendChild(img);
+    } else {
+      UserRow.cells[1].innerText = EmailField.value;
+      UserRow.cells[2].innerText = AddressField.value;
+      UserRow.cells[3].innerText = admin;
+      UserRow.cells[3].src = ImageField.value;
+    }
   });
 
   EmptyButton.addEventListener("click", function () {
     var EmptyTable = document.createElement("tbody");
-    DatabaseContent.parentNode.replaceChild(EmptyTable, DatabaseContent);
+    DatabaseTable.parentNode.replaceChild(EmptyTable, DatabaseTable);
   });
 }
 
@@ -55,4 +68,20 @@ function isAdmin(checkbox) {
     Admin = "-";
   }
   return Admin;
+}
+
+function UserChecked(Database, newUser) {
+  let rowNo = "none";
+  let rows = document.getElementsByTagName("tr");
+  for (var row of rows) {
+    let user = row.cells[0].innerText;
+    console.log(user);
+    console.log(newUser);
+    if (user === newUser) {
+      rowNo = row;
+      break;
+    }
+  }
+
+  return rowNo;
 }
