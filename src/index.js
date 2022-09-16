@@ -35,7 +35,7 @@ function initializeCode() {
       var cell5 = row.insertCell(4);
 
       var img = document.createElement("img");
-      img.src = ImageField.value;
+      img.src = ImageField.files[0];
       img.width = 64;
       img.height = 64;
 
@@ -48,13 +48,14 @@ function initializeCode() {
       UserRow.cells[1].innerText = EmailField.value;
       UserRow.cells[2].innerText = AddressField.value;
       UserRow.cells[3].innerText = admin;
-      UserRow.cells[3].src = ImageField.value;
+      UserRow.cells[3].src = ImageField.files[0];
     }
   });
 
   EmptyButton.addEventListener("click", function () {
     var EmptyTable = document.createElement("tbody");
-    DatabaseTable.parentNode.replaceChild(EmptyTable, DatabaseTable);
+    var OldTable = document.getElementById("databasebody");
+    OldTable.parentNode.replaceChild(EmptyTable, OldTable);
   });
 }
 
