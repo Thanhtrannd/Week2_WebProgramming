@@ -11,7 +11,7 @@ if (document.readyState !== "loading") {
 function initializeCode() {
   const SubmitButton = document.getElementById("submit-data");
   const EmptyButton = document.getElementById("empty-table");
-  const DatabaseTable = document.getElementById("database");
+  const DatabaseTable = document.getElementById("databasebody");
   const UsernameField = document.getElementById("input-username");
   const EmailField = document.getElementById("input-email");
   const AddressField = document.getElementById("input-address");
@@ -59,9 +59,7 @@ function initializeCode() {
   });
 
   EmptyButton.addEventListener("click", function () {
-    var EmptyTable = document.createElement("tbody");
-    var OldTable = document.getElementById("databasebody");
-    OldTable.parentNode.replaceChild(EmptyTable, OldTable);
+    DatabaseTable.innerHTML = "";
   });
 }
 
