@@ -26,12 +26,14 @@ function initializeCode() {
     admin = isAdmin(AdminField);
 
     var img = document.createElement("img");
-    let imgFile = ImageField.files[0];
-    console.log(ImageField.files[0]);
-    let imgUrl = URL.createObjectURL(imgFile);
-    img.src = imgUrl;
-    img.width = 64;
-    img.height = 64;
+    if (typeof ImageField.files[0] !== "undefined") {
+      let imgFile = ImageField.files[0];
+      console.log(ImageField.files[0]);
+      let imgUrl = URL.createObjectURL(imgFile);
+      img.src = imgUrl;
+      img.width = 64;
+      img.height = 64;
+    }
 
     if (UserRow === "none") {
       var row = DatabaseTable.insertRow(-1);
@@ -51,7 +53,8 @@ function initializeCode() {
       UserRow.cells[1].innerText = EmailField.value;
       UserRow.cells[2].innerText = AddressField.value;
       UserRow.cells[3].innerText = admin;
-      UserRow.cells[4].firstElementChild.src = imgUrl;
+      UserRow.cells[4].innerHTML = "";
+      UserRow.cells[4].appendChild(img);
     }
   });
 
