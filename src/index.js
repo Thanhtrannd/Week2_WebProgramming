@@ -25,6 +25,14 @@ function initializeCode() {
     let admin;
     admin = isAdmin(AdminField);
 
+    var img = document.createElement("img");
+    let imgFile = ImageField.files[0];
+    console.log(ImageField.files[0]);
+    let imgUrl = URL.createObjectURL(imgFile);
+    img.src = imgUrl;
+    img.width = 64;
+    img.height = 64;
+
     if (UserRow === "none") {
       var row = DatabaseTable.insertRow(-1);
 
@@ -33,11 +41,6 @@ function initializeCode() {
       var cell3 = row.insertCell(2);
       var cell4 = row.insertCell(3);
       var cell5 = row.insertCell(4);
-
-      var img = document.createElement("img");
-      img.src = ImageField.files[0];
-      img.width = 64;
-      img.height = 64;
 
       cell1.innerText = UsernameField.value;
       cell2.innerText = EmailField.value;
@@ -48,7 +51,7 @@ function initializeCode() {
       UserRow.cells[1].innerText = EmailField.value;
       UserRow.cells[2].innerText = AddressField.value;
       UserRow.cells[3].innerText = admin;
-      UserRow.cells[3].src = ImageField.files[0];
+      UserRow.cells[4].firstElementChild.src = imgUrl;
     }
   });
 
@@ -83,6 +86,5 @@ function UserChecked(Database, newUser) {
       break;
     }
   }
-
   return rowNo;
 }
